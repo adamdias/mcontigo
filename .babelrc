@@ -1,0 +1,20 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    "inline-react-svg",
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": true,
+        "displayName": false,
+        "preprocess": false
+      }
+    ],
+    [
+      "babel-plugin-root-import",
+      {
+        "rootPathSuffix": "src"
+      }
+    ]
+  ]
+}

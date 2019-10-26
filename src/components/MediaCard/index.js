@@ -4,38 +4,48 @@ import {
   CardMedia,
   CardContent,
   Typography,
-  CardActions,
+  Box,
   Button,
+  Grid,
 } from '@material-ui/core';
+import Link from 'next/link';
 
-export default function MediaCard() {
+import * as S from './styled';
+
+export default function MediaCard({ article, xs, sm }) {
   return (
-    <>
+    <Grid item xs={xs} sm={sm}>
       <Card component="article">
         <CardMedia
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
+          component="img"
+          alt={article.title}
+          height="250"
+          image={article.featured_media.large}
+          title={article.title}
         />
 
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
+          <Typography gutterBottom variant="h5" component="h1">
+            {article.title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
 
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {article.excerpt}
+          </Typography>
+
+          <Box display="flex" flexDirection="row-reverse">
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ marginTop: '15px' }}
+            >
+              <Link href={`/article/${article.id}`}>
+                <S.MyLink>Learn More</S.MyLink>
+              </Link>
+            </Button>
+          </Box>
+        </CardContent>
       </Card>
-    </>
+    </Grid>
   );
 }
