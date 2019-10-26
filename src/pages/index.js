@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { useRouter } from 'next/router';
 import { Container, Grid } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 
@@ -8,17 +7,17 @@ import Header from '../components/Header';
 import MediaCard from '../components/MediaCard';
 import Footer from '../components/Footer';
 import { MyBodyContainer } from '../components/BodyContainer/styled';
+import Search from '../components/Search';
 
 export default function Home() {
-  // const Router = useRouter();
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadPosts() {
       const { data } = await api.get('/posts?orderby=relevance');
 
-      setLoading(true);
+      setLoading(false);
       setArticles(data);
     }
 
@@ -28,9 +27,10 @@ export default function Home() {
   return (
     <MyBodyContainer>
       <Header />
+      {!loading && <Search />}
 
       <Container>
-        {loading ? (
+        {!loading ? (
           <Grid container spacing={3}>
             {articles
               ? articles.map(article => (

@@ -1,8 +1,15 @@
 import React from 'react';
+import Router from 'next/router';
+import NProgress from 'nprogress';
 import { CssBaseline, AppBar, Toolbar, Typography } from '@material-ui/core';
 
+import { Link } from '../../routes';
 import * as S from './styled';
 import ImgLogo from '~/public/logo.svg';
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('onRouteChangeError', () => NProgress.done());
 
 export default function Header() {
   return (
@@ -16,7 +23,11 @@ export default function Header() {
       <AppBar>
         <Toolbar>
           <S.MyContainer>
-            <ImgLogo />
+            <Link route="/">
+              <a>
+                <ImgLogo style={{ cursor: 'pointer' }} />
+              </a>
+            </Link>
           </S.MyContainer>
         </Toolbar>
       </AppBar>
