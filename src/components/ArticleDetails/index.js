@@ -16,7 +16,7 @@ export default function ArticleDetails({ article }) {
         <S.MyCardMedia
           component="img"
           alt={article.title}
-          image={article.featured_media.medium_large}
+          image={article.featured_media.large}
           title={article.title}
         />
 

@@ -9,8 +9,10 @@ import MediaCard from '~/components/MediaCard';
 import Footer from '~/components/Footer';
 import { MyBodyContainer } from '~/components/BodyContainer/styled';
 import InputSearch from '~/components/InputSearch';
+import { Router } from '~/routes';
 
 export default function Home() {
+  const [txt, setTxt] = useState('');
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -25,6 +27,12 @@ export default function Home() {
     loadArticles();
   }, []);
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    Router.pushRoute(`/search?txt=${txt}`);
+  }
+
   return (
     <>
       <Head>
@@ -33,7 +41,14 @@ export default function Home() {
 
       <MyBodyContainer>
         <Header />
-        {!loading && <InputSearch />}
+
+        {!loading && (
+          <InputSearch
+            change={e => setTxt(e.target.value)}
+            value={txt}
+            submit={e => handleSubmit(e)}
+          />
+        )}
 
         <Container>
           {!loading ? (

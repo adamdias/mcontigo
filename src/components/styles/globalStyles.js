@@ -75,4 +75,29 @@ export default createGlobalStyle`
       transform: rotate(360deg);
     }
   }
+
+  .pagination-default {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+
+    a {
+      padding: 15px 20px;
+      background-color: #eee;
+      color: #333;
+      font-weight: bold;
+      outline: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(0,0,0, 0.1);
+      }
+
+      &.active {
+        background-color: #449dd1;
+        color: #fff;
+      }
+    }
+  }
 `;

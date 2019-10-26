@@ -20,7 +20,11 @@ export default function MediaCard({ article, xs, sm }) {
           component="img"
           alt={article.title}
           height="250"
-          image={article.featured_media.large}
+          image={
+            article.featured_media && article.featured_media.large
+              ? article.featured_media.large
+              : ''
+          }
           title={article.title}
         />
 

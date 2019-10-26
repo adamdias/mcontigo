@@ -2,24 +2,16 @@ import React, { useState } from 'react';
 import { Container, InputAdornment, IconButton } from '@material-ui/core';
 import IconSearch from '@material-ui/icons/Search';
 
-import { Router } from '~/routes';
 import * as S from './styled';
 
-export default function Search() {
-  const [search, setSearch] = useState('');
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    Router.pushRoute(`/search?txt=${search}`);
-  }
-
+export default function Search({ value, change, submit }) {
   return (
     <Container>
       <S.MyPaper style={{ padding: '20px' }}>
-        <form onSubmit={e => handleSubmit(e)}>
+        <form onSubmit={submit}>
           <S.MyTextField
-            onChange={e => setSearch(e.target.value)}
+            onChange={change}
+            value={value}
             label="Pesquisar artigos:"
             InputLabelProps={{
               shrink: true,
