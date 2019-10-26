@@ -1,23 +1,30 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
+import Head from 'next/head';
 
-import api from '../../services/api';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import { MyBodyContainer } from '../../components/BodyContainer/styled';
-import ArticleDetails from '../../components/ArticleDetails';
+import api from '~/services/api';
+import Header from '~/components/Header';
+import Footer from '~/components/Footer';
+import { MyBodyContainer } from '~/components/BodyContainer/styled';
+import ArticleDetails from '~/components/ArticleDetails';
 
 function Article({ article }) {
   return (
-    <MyBodyContainer>
-      <Header />
+    <>
+      <Head>
+        <title>{article.title} - Mcontigo</title>
+      </Head>
 
-      <Container>
-        <ArticleDetails article={article} />
-      </Container>
+      <MyBodyContainer>
+        <Header />
 
-      <Footer />
-    </MyBodyContainer>
+        <Container>
+          <ArticleDetails article={article} />
+        </Container>
+
+        <Footer />
+      </MyBodyContainer>
+    </>
   );
 }
 

@@ -3,7 +3,7 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import { CssBaseline, AppBar, Toolbar, Typography } from '@material-ui/core';
 
-import { Link } from '../../routes';
+import { Link } from '~/routes';
 import * as S from './styled';
 import ImgLogo from '~/public/logo.svg';
 

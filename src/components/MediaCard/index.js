@@ -9,7 +9,7 @@ import {
   Grid,
 } from '@material-ui/core';
 
-import { Link } from '../../routes';
+import { Link } from '~/routes';
 import * as S from './styled';
 
 export default function MediaCard({ article, xs, sm }) {
@@ -33,15 +33,17 @@ export default function MediaCard({ article, xs, sm }) {
             {article.excerpt}
           </Typography>
 
-          <Box display="flex" flexDirection="row-reverse">
+          <Box
+            display="flex"
+            flexDirection="row-reverse"
+            style={{ marginTop: '15px' }}
+          >
             <Link route="article" params={{ id: article.id }} passHref>
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ marginTop: '15px' }}
-              >
-                <S.MyLink>Sepa mas</S.MyLink>
-              </Button>
+              <S.MyLink>
+                <Button variant="contained" color="primary">
+                  Sepa mas
+                </Button>
+              </S.MyLink>
             </Link>
           </Box>
         </CardContent>
