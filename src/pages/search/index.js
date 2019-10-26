@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import { Container, Grid, Typography } from '@material-ui/core';
+import { Container, Grid, Typography, Box } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 
 import { Router } from '~/routes';
@@ -79,7 +79,7 @@ function Search({ txt: paramTxt, page = 1 }) {
               <Grid
                 container
                 spacing={3}
-                style={{ marginTop: '10px', marginBottom: '40px' }}
+                style={{ marginTop: '10px', marginBottom: '20px' }}
               >
                 {articles
                   ? articles.map(article => (

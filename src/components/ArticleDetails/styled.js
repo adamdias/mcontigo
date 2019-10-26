@@ -37,3 +37,13 @@ export const MyCardMedia = styled(CardMedia)`
     max-height: 250px;
   }
 `;
+
+export const MyBoxChip = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+
+  & > * {
+    margin-right: 5px;
+  }
+`;

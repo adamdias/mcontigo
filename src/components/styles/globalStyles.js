@@ -78,9 +78,15 @@ export default createGlobalStyle`
 
   .pagination-default {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     list-style: none;
+    flex-wrap: wrap;
+    width: 100%;
+
+    li {
+      display: flex;
+    }
 
     a {
       padding: 15px 20px;
