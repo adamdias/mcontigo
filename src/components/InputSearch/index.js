@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, InputAdornment, IconButton } from '@material-ui/core';
 import IconSearch from '@material-ui/icons/Search';
 
@@ -12,7 +12,7 @@ export default function Search({ value, change, submit }) {
           <S.MyTextField
             onChange={change}
             value={value}
-            label="Pesquisar artigos:"
+            label="Buscar artículos:"
             InputLabelProps={{
               shrink: true,
             }}

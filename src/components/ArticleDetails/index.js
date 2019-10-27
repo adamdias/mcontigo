@@ -1,5 +1,5 @@
 import React from 'react';
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, isValid } from 'date-fns';
 import es from 'date-fns/locale/es';
 
 import {
@@ -16,13 +16,12 @@ import {
 import * as S from './styled';
 
 export default function ArticleDetails({ article }) {
-  const datePublish = format(
-    parseISO(article.published),
-    "dd 'de' MMMM' a las ' HH:mm'h'",
-    {
-      locale: es,
-    }
-  );
+  const date = parseISO(article.published);
+  const datePublish = isValid(date)
+    ? format(date, "dd 'de' MMMM' de' yyyy 'a las' HH:mm'h'", {
+        locale: es,
+      })
+    : null;
 
   return (
     <Container maxWidth="md">
@@ -30,7 +29,11 @@ export default function ArticleDetails({ article }) {
         <S.MyCardMedia
           component="img"
           alt={article.title}
-          image={article.featured_media.large}
+          image={
+            article.featured_media && article.featured_media.large
+              ? article.featured_media.large
+              : ''
+          }
           title={article.title}
         />
 
@@ -78,47 +81,51 @@ export default function ArticleDetails({ article }) {
             </S.MyBoxChip>
           )}
 
-          <Grid
-            container
-            style={{
-              marginTop: '20px',
-              background: '#f5f5f5',
-              padding: '30px',
-              borderTop: '4px solid #aaa',
-            }}
-          >
-            <Grid item>
-              <Avatar
-                style={{ width: '80px', height: '80px' }}
-                alt={article.author.name}
-                src={article.author.picture}
-              />
-            </Grid>
+          {article.author && (
+            <Grid
+              container
+              style={{
+                marginTop: '20px',
+                background: '#f5f5f5',
+                padding: '30px',
+                borderTop: '4px solid #aaa',
+              }}
+            >
+              <Grid item>
+                <Avatar
+                  style={{ width: '80px', height: '80px' }}
+                  alt={article.author.name}
+                  src={article.author.picture}
+                />
+              </Grid>
 
-            <Grid item>
-              <Typography gutterBottom variant="h5" component="p">
-                {article.author.name}
-              </Typography>
+              <Grid item>
+                <Typography gutterBottom variant="h5" component="p">
+                  {article.author.name}
+                </Typography>
 
-              <Typography
-                gutterBottom
-                variant="body2"
-                component="p"
-                dangerouslySetInnerHTML={{ __html: article.author.description }}
-              />
-
-              {article.bibliography && (
                 <Typography
                   gutterBottom
                   variant="body2"
                   component="p"
                   dangerouslySetInnerHTML={{
-                    __html: article.bibliography,
+                    __html: article.author.description,
                   }}
                 />
-              )}
+
+                {article.bibliography && (
+                  <Typography
+                    gutterBottom
+                    variant="body2"
+                    component="p"
+                    dangerouslySetInnerHTML={{
+                      __html: article.bibliography,
+                    }}
+                  />
+                )}
+              </Grid>
             </Grid>
-          </Grid>
+          )}
         </CardContent>
       </Card>
     </Container>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import { Container, Grid, Typography, Box } from '@material-ui/core';
+import { Container, Grid, Typography } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 
 import { Router } from '~/routes';
@@ -30,8 +30,8 @@ function Search({ txt: paramTxt, page = 1 }) {
       });
 
       setLoading(false);
-      setTotalResults(headers['x-mc-total-items']);
-      setTotalPages(headers['x-mc-total-pages']);
+      setTotalResults(parseInt(headers['x-mc-total-items'], 10));
+      setTotalPages(parseInt(headers['x-mc-total-pages'], 10));
       setArticles(data);
     }
 
@@ -49,13 +49,15 @@ function Search({ txt: paramTxt, page = 1 }) {
   async function handlePageChange(button) {
     setLoading(true);
 
-    Router.pushRoute(`/search?txt=${paramTxt}&page=${button.selected + 1}`);
+    const param = paramTxt ? `&txt=${paramTxt}` : '';
+
+    Router.pushRoute(`/search?page=${button.selected + 1}${param}`);
   }
 
   return (
     <>
       <Head>
-        <title>{txt} - Mcontigo</title>
+        <title>{txt || 'Busca'} - Mcontigo</title>
       </Head>
 
       <MyBodyContainer>

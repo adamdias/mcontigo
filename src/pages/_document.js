@@ -1,18 +1,36 @@
 import React from 'react';
 import Document, { Head, Main, NextScript, Html } from 'next/document';
+import { ServerStyleSheets } from '@material-ui/styles';
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
+  static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
+    const sheets = new ServerStyleSheets();
+    const originalRenderPage = ctx.renderPage;
 
-    const page = renderPage(App => props =>
-      sheet.collectStyles(<App {...props} />)
-    );
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props =>
+            sheet.collectStyles(sheets.collect(<App {...props} />)),
+        });
 
-    const styleTags = sheet.getStyleElement();
+      const initialProps = await Document.getInitialProps(ctx);
 
-    return { ...page, styleTags };
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheets.getStyleElement()}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {
@@ -24,7 +42,6 @@ export default class MyDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          {this.props.styleTags}
         </Head>
 
         <body>

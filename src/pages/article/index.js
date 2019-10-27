@@ -29,17 +29,19 @@ function Article({ article }) {
 }
 
 Article.getInitialProps = async ({ query, res }) => {
-  const { data: article } = await api.get(`/posts/${query.id}`).catch(() => {
+  try {
+    const { data: article } = await api.get(`/posts/${query.id}`);
+
+    return {
+      article,
+    };
+  } catch (err) {
     res.writeHead(302, {
       Location: '/',
     });
 
     return res.end();
-  });
-
-  return {
-    article,
-  };
+  }
 };
 
 export default Article;
