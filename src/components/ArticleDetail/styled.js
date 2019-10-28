@@ -11,9 +11,8 @@ export const MyDetails = styled.div`
   img {
     display: block;
     margin: 25px auto;
-    max-width: 250px;
-    max-height: 250px;
-    object-fit: cover;
+    width: 300px;
+    height: 220px;
   }
 
   a {
