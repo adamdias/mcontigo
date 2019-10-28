@@ -8,4 +8,6 @@ Projeto com o objetivo de demonstrar habilidades com o react, através do SSR "n
 yarn
 
 yarn dev
+
+// server on in http://localhost:9045
 ```
