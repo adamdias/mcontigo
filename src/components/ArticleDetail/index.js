@@ -40,13 +40,13 @@ export default function ArticleDetails({ article }) {
       <Card component="article">
         <S.MyCardMedia
           component="img"
+          title={article.title}
           alt={article.title}
           image={
             article.featured_media && article.featured_media.large
               ? article.featured_media.large
               : ''
           }
-          title={article.title}
         />
 
         <CardContent>
@@ -67,7 +67,11 @@ export default function ArticleDetails({ article }) {
 
           <Divider />
 
-          <S.MyDetails dangerouslySetInnerHTML={{ __html: article.content }} />
+          <S.MyDetails
+            dangerouslySetInnerHTML={{
+              __html: article.content,
+            }}
+          />
 
           <Divider />
 

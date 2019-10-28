@@ -54,4 +54,6 @@ Article.getInitialProps = async ({ query, res }) => {
   }
 };
 
+// export const config = { amp: true };
+
 export default Article;
