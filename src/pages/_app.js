@@ -1,6 +1,6 @@
 import React from 'react';
 import App from 'next/app';
-import GlobalStyle from '~/components/styles/globalStyles';
+import GlobalStyle from '~/components/GlobalStyle/styled';
 
 class MyApp extends App {
   render() {

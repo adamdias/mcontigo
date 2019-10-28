@@ -5,7 +5,7 @@ import api from '~/services/api';
 import Header from '~/components/Header';
 import Footer from '~/components/Footer';
 import { MyBodyContainer } from '~/components/BodyContainer/styled';
-import ArticleDetails from '~/components/ArticleDetails';
+import ArticleDetail from '~/components/ArticleDetail';
 import HeadSeo from '../../components/HeadSeo';
 
 function Article({ article }) {
@@ -29,7 +29,7 @@ function Article({ article }) {
         <Header />
 
         <Container>
-          <ArticleDetails article={article} />
+          <ArticleDetail article={article} />
         </Container>
 
         <Footer />
