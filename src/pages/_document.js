@@ -3,6 +3,8 @@ import Document, { Head, Main, NextScript, Html } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/styles';
 import { ServerStyleSheet } from 'styled-components';
 
+// import Favicon from '~/public/favicon.png';
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
@@ -35,12 +37,17 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html itemScope itemType="https://schema.org/WebPage">
         <Head>
           <meta charSet="UTF-8" />
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
+          />
+          <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="/public/favicon.png"
           />
         </Head>
 

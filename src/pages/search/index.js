@@ -63,12 +63,20 @@ function Search({ txt: paramTxt, page = 1 }) {
       <MyBodyContainer>
         <Header />
 
-        {!loading && (
+        {!loading ? (
           <InputSearch
             change={e => setTxt(e.target.value)}
             value={txt}
             submit={e => handleSubmit(e)}
           />
+        ) : (
+          <Container>
+            <Grid container style={{ marginBottom: '20px' }}>
+              <Grid item xs={12}>
+                <Skeleton variant="rect" height={100} />
+              </Grid>
+            </Grid>
+          </Container>
         )}
 
         <Container>
@@ -98,14 +106,16 @@ function Search({ txt: paramTxt, page = 1 }) {
           ) : (
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
-                <Skeleton variant="rect" height={118} />
+                <Skeleton variant="rect" height={250} />
+                <Skeleton />
                 <Skeleton />
                 <Skeleton />
                 <Skeleton width="60%" />
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <Skeleton variant="rect" height={118} />
+                <Skeleton variant="rect" height={250} />
+                <Skeleton />
                 <Skeleton />
                 <Skeleton />
                 <Skeleton width="60%" />

@@ -16,6 +16,18 @@ import {
 import * as S from './styled';
 
 export default function ArticleDetails({ article }) {
+  const {
+    articleSection,
+    dateModified,
+    datePublished,
+    description,
+    headline,
+    url,
+    author,
+    image,
+    publisher,
+  } = article.metas.schema;
+
   const date = parseISO(article.published);
   const datePublish = isValid(date)
     ? format(date, "dd 'de' MMMM' de' yyyy 'a las' HH:mm'h'", {
@@ -128,6 +140,100 @@ export default function ArticleDetails({ article }) {
           )}
         </CardContent>
       </Card>
+
+      <span itemScope itemType="https://schema.org/BlogPosting">
+        <meta itemProp="articleSection" content={articleSection} />
+        <meta itemProp="dateModified" content={dateModified} />
+        <meta itemProp="datePublished" content={datePublished} />
+        <meta itemProp="description" content={description} />
+        <meta itemProp="headline" content={headline} />
+        <meta itemProp="url" content={url} />
+
+        {image && (
+          <span
+            itemProp="image"
+            itemScope
+            itemType="https://schema.org/ImageObject"
+          >
+            <meta itemProp="url" content={image.url} />
+            <meta itemProp="height" content={image.height} />
+            <meta itemProp="width" content={image.width} />
+          </span>
+        )}
+
+        {publisher && (
+          <span
+            itemProp="publisher"
+            itemScope
+            itemType="https://schema.org/Organization"
+          >
+            <meta itemProp="name" content={publisher.name} />
+            <meta
+              itemProp="sameAs"
+              content={
+                publisher.sameAs && publisher.sameAs[0]
+                  ? publisher.sameAs[0]
+                  : ''
+              }
+            />
+
+            <span
+              itemProp="contactPoint"
+              itemScope
+              itemType="https://schema.org/ContactPoint"
+            >
+              <meta
+                itemProp="contactType"
+                content={
+                  publisher.contactPoint && publisher.contactPoint.contactType
+                }
+              />
+              <meta
+                itemProp="telephone"
+                content={
+                  publisher.contactPoint && publisher.contactPoint.telephone
+                }
+              />
+              <meta
+                itemProp="url"
+                content={publisher.contactPoint && publisher.contactPoint.url}
+              />
+            </span>
+          </span>
+        )}
+
+        {author && (
+          <span
+            itemProp="author"
+            itemScope
+            itemType="https://schema.org/Person"
+          >
+            <meta itemProp="name" content={author.name} />
+            <meta itemProp="url" content={author.url} />
+            <meta
+              itemProp="sameAs"
+              content={
+                author.sameAs && author.sameAs[0] ? author.sameAs[0] : ''
+              }
+            />
+            <span
+              itemProp="image"
+              itemScope
+              itemType="https://schema.org/ImageObject"
+            >
+              <meta itemProp="url" content={author.image && author.image.url} />
+              <meta
+                itemProp="height"
+                content={author.image && author.image.height}
+              />
+              <meta
+                itemProp="width"
+                content={author.image && author.image.width}
+              />
+            </span>
+          </span>
+        )}
+      </span>
     </Container>
   );
 }
