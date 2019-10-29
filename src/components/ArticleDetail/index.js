@@ -97,6 +97,17 @@ export default function ArticleDetails({ article }) {
             </S.MyBoxChip>
           )}
 
+          {article.bibliography && (
+            <Typography
+              gutterBottom
+              variant="body2"
+              component="p"
+              dangerouslySetInnerHTML={{
+                __html: article.bibliography,
+              }}
+            />
+          )}
+
           {article.author && (
             <Grid
               container
@@ -128,17 +139,6 @@ export default function ArticleDetails({ article }) {
                     __html: article.author.description,
                   }}
                 />
-
-                {article.bibliography && (
-                  <Typography
-                    gutterBottom
-                    variant="body2"
-                    component="p"
-                    dangerouslySetInnerHTML={{
-                      __html: article.bibliography,
-                    }}
-                  />
-                )}
               </Grid>
             </Grid>
           )}

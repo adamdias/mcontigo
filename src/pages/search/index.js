@@ -41,17 +41,16 @@ function Search({ txt: paramTxt, page = 1 }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    setLoading(true);
-
-    Router.pushRoute(`/search?txt=${txt}`);
+    if (txt !== paramTxt) {
+      setLoading(true);
+      Router.pushRoute(`/search?txt=${txt}`);
+    }
   }
 
   async function handlePageChange(button) {
     setLoading(true);
 
-    const param = paramTxt ? `&txt=${paramTxt}` : '';
-
-    Router.pushRoute(`/search?page=${button.selected + 1}${param}`);
+    Router.pushRoute(`/search?txt=${paramTxt}&page=${button.selected + 1}`);
   }
 
   return (
@@ -75,9 +74,10 @@ function Search({ txt: paramTxt, page = 1 }) {
           />
         ) : (
           <Container>
-            <Grid container style={{ marginBottom: '20px' }}>
+            <Grid container>
               <Grid item xs={12}>
-                <Skeleton variant="rect" height={100} />
+                <Skeleton height={100} />
+                <Skeleton width="60%" style={{ marginTop: '20px' }} />
               </Grid>
             </Grid>
           </Container>
@@ -110,7 +110,7 @@ function Search({ txt: paramTxt, page = 1 }) {
           ) : (
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
-                <Skeleton variant="rect" height={250} />
+                <Skeleton height={250} />
                 <Skeleton />
                 <Skeleton />
                 <Skeleton />
@@ -118,7 +118,7 @@ function Search({ txt: paramTxt, page = 1 }) {
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <Skeleton variant="rect" height={250} />
+                <Skeleton height={250} />
                 <Skeleton />
                 <Skeleton />
                 <Skeleton />
