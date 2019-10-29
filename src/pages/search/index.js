@@ -11,6 +11,7 @@ import Header from '~/components/Header';
 import Footer from '~/components/Footer';
 import InputSearch from '~/components/InputSearch';
 import Pagination from '~/components/Pagination';
+import HeadSeo from '../../components/HeadSeo';
 
 function Search({ txt: paramTxt, page = 1 }) {
   const [totalResults, setTotalResults] = useState(0);
@@ -56,9 +57,13 @@ function Search({ txt: paramTxt, page = 1 }) {
 
   return (
     <>
-      <Head>
-        <title>{txt || 'Busca'} - Mcontigo</title>
-      </Head>
+      <HeadSeo
+        title={`${txt || 'Busca'} - Mcontigo`}
+        author="https://www.linkedin.com/in/adam-dias/"
+        publisher="https://www.linkedin.com/in/adam-dias/"
+        section="Search"
+        twitter="@mejorsalud"
+      />
 
       <MyBodyContainer>
         <Header />
