@@ -16,22 +16,21 @@ export default function MediaCard({ article, xs, sm }) {
   return (
     <Grid item xs={xs} sm={sm}>
       <Card component="article">
-        <CardMedia
+        <S.MyCardMedia
           component="img"
           alt={article.title}
-          height="250"
           image={
-            article.featured_media && article.featured_media.large
-              ? article.featured_media.large
+            article.featured_media && article.featured_media.medium_large
+              ? article.featured_media.medium_large
               : ''
           }
           title={article.title}
         />
 
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h1">
+          <S.MyTypography gutterBottom variant="h5" component="h1">
             {article.title}
-          </Typography>
+          </S.MyTypography>
 
           <Typography variant="body2" color="textSecondary" component="p">
             {article.excerpt}

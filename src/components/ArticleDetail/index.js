@@ -43,8 +43,8 @@ export default function ArticleDetails({ article }) {
           title={article.title}
           alt={article.title}
           image={
-            article.featured_media && article.featured_media.large
-              ? article.featured_media.large
+            article.featured_media && article.featured_media.medium_large
+              ? article.featured_media.medium_large
               : ''
           }
         />

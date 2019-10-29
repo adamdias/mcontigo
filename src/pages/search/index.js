@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
 import { Container, Grid, Typography } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 

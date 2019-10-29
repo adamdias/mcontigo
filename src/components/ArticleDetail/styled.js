@@ -11,8 +11,19 @@ export const MyDetails = styled.div`
   img {
     display: block;
     margin: 25px auto;
-    width: 300px;
-    height: 220px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: cover;
+
+    @media only screen and (max-width: 599px) {
+      margin: 10px auto 20px auto;
+      max-height: 250px;
+    }
+  }
+
+  .content-thumb {
+    margin: 0 !important;
   }
 
   a {
@@ -26,9 +37,9 @@ export const MyDetails = styled.div`
 `;
 
 export const MyCardMedia = styled(CardMedia)`
-  max-height: 420px;
+  max-height: 450px;
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 900px) {
     max-height: 350px;
   }
 
