@@ -26,6 +26,7 @@ export default function ArticleDetails({ article }) {
     author,
     image,
     publisher,
+    mainEntityOfPage,
   } = article.metas.schema;
 
   const date = parseISO(article.published);
@@ -153,6 +154,8 @@ export default function ArticleDetails({ article }) {
         <meta itemProp="headline" content={headline} />
         <meta itemProp="url" content={url} />
 
+        <meta itemProp="mainEntityOfPage" content={mainEntityOfPage['@id']} />
+
         {image && (
           <span
             itemProp="image"
@@ -180,6 +183,18 @@ export default function ArticleDetails({ article }) {
                   : ''
               }
             />
+
+            {publisher.logo && (
+              <span
+                itemProp="logo"
+                itemScope
+                itemType="https://schema.org/ImageObject"
+              >
+                <meta itemProp="width" content={publisher.logo.width} />
+                <meta itemProp="height" content={publisher.logo.height} />
+                <meta itemProp="url" content={publisher.logo.url} />
+              </span>
+            )}
 
             <span
               itemProp="contactPoint"
